@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, search!</string>
+    <string name="tipfiller">This is a green tip.</string>
+    <string name="app_name">Recycle Buddy</string>
+    <string name="address_sample">This is an address.\nThis is an address.\nThis is an address.\nThis is an address.</string>
+    <string name="blank"></string>
+    <string name="search">Search</string>
+    <string name="searchinstructions">Please choose the item(s) you wish to recycle, and your zip code or city &amp; state.</string>
+    <string name="ziphint">Zip Code</string>
+    <string name="citysthint">City &amp; State</string>
+    <string name="cardboard">Cardboard</string>
+    <string name="plastic">Plastic</string>
+    <string name="glass">Glass</string>
+    <string name="aluminum">Aluminum</string>
+    <string name="paper">Paper</string>
+    <string name="anything">Anything</string>
+    <string-array name="materials">
+        <item>Aluminum</item>
+        <item>Glass</item>
+        <item>Plastic</item>
+        <item>Cardboard</item>
+        <item>Paper</item>
+    </string-array>
+    <color name="BuddyGreen">#ABC578</color>
+</resources>
