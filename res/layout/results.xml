@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:orientation="vertical">
+    <TableLayout android:id="@+id/tableLayout2" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <TableRow android:id="@+id/TableRow01" android:layout_height="wrap_content" android:layout_width="fill_parent">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/BuddyGreen" android:text="@string/greentip" android:id="@+id/TextView02"></TextView>
+            <TextView android:layout_width="wrap_content" android:marqueeRepeatLimit="marquee_forever" android:layout_height="wrap_content" android:ellipsize="marquee" android:textColor="@color/BuddyGreen" android:singleLine="true" android:text="@string/tipfiller" android:id="@+id/tvTips"></TextView>
+        </TableRow>
+    </TableLayout>
+    <TableLayout android:layout_width="fill_parent" android:id="@+id/tableLayout1" android:layout_height="wrap_content">
+        <TableRow android:layout_width="fill_parent" android:id="@+id/tableRow1" android:layout_height="wrap_content">
+            <ImageView android:layout_width="fill_parent" android:id="@+id/ivIcon" android:layout_gravity="center" android:src="@drawable/icon" android:layout_height="wrap_content"></ImageView>
+            <TextView android:id="@+id/tvAppName" android:textSize="30dip" android:text="@string/app_name" android:textColor="@color/BuddyGreen" android:gravity="center" android:layout_width="fill_parent" android:layout_height="fill_parent"></TextView>
+        </TableRow>
+    </TableLayout>
+    <ScrollView android:layout_width="fill_parent" android:id="@+id/scrollView1" android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:layout_height="fill_parent" android:orientation="vertical">
+            <TextView android:layout_height="wrap_content" android:text="@string/address_sample" android:id="@+id/TextView01" android:layout_width="wrap_content" android:autoLink="all"></TextView>
+            <TextView android:layout_width="wrap_content" android:text="@string/address_sample" android:layout_height="wrap_content" android:autoLink="all" android:id="@+id/tvSample"></TextView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

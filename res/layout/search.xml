@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical" android:id="@+id/llAll">
+    <TableLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/tableLayout2">
+        <TableRow android:layout_height="wrap_content" android:id="@+id/tableRow1" android:layout_width="fill_parent">
+            <TextView android:text="@string/greentip" android:layout_height="wrap_content" android:textColor="@color/BuddyGreen" android:id="@+id/TextView01" android:layout_width="wrap_content"></TextView>
+            <TextView android:marqueeRepeatLimit="marquee_forever" android:singleLine="true" android:text="@string/tipfiller" android:ellipsize="marquee" android:layout_height="wrap_content" android:textColor="@color/BuddyGreen" android:id="@+id/tvTips" android:layout_width="wrap_content"></TextView>
+        </TableRow>
+    </TableLayout>
+    <TableLayout android:layout_width="fill_parent" android:id="@+id/tableLayout1" android:layout_height="wrap_content">
+        <TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:layout_gravity="center" android:id="@+id/ivIcon" android:layout_width="fill_parent" android:src="@drawable/icon" android:layout_height="wrap_content"></ImageView>
+            <TextView android:textSize="30dip" android:text="@string/app_name" android:layout_height="fill_parent" android:textColor="@color/BuddyGreen" android:gravity="center" android:layout_width="fill_parent" android:id="@+id/tvAppName"></TextView>
+        </TableRow>
+    </TableLayout>
+    <TextView android:id="@+id/tvSearchHelp" android:layout_width="wrap_content" android:text="@string/searchinstructions" android:layout_height="wrap_content"></TextView>
+    <ScrollView android:id="@+id/svMain" android:layout_height="wrap_content" android:layout_width="fill_parent">
+        <LinearLayout android:layout_height="fill_parent" android:isScrollContainer="true" android:orientation="vertical" android:id="@+id/llMain" android:layout_width="fill_parent" android:baselineAligned="true">
+            <TableLayout android:layout_height="wrap_content" android:id="@+id/tlCheckboxes" android:layout_width="wrap_content">
+                <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/trCheck1">
+                    <CheckBox android:id="@+id/cbAny" android:layout_height="wrap_content" android:text="@string/anything" android:checked="true" android:layout_width="wrap_content"></CheckBox>
+                    <CheckBox android:id="@+id/cbCardboard" android:layout_height="wrap_content" android:text="@string/cardboard" android:layout_width="wrap_content"></CheckBox>
+                </TableRow>
+                <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/trCheck2">
+                    <CheckBox android:id="@+id/cbPlastic" android:layout_height="wrap_content" android:text="@string/plastic" android:layout_width="wrap_content"></CheckBox>
+                    <CheckBox android:id="@+id/cbPaper" android:layout_height="wrap_content" android:text="@string/paper" android:layout_width="wrap_content"></CheckBox>
+                </TableRow>
+                <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/trCheck3">
+                    <CheckBox android:id="@+id/cbGlass" android:layout_height="wrap_content" android:text="@string/glass" android:layout_width="wrap_content"></CheckBox>
+                    <CheckBox android:id="@+id/cbAluminum" android:layout_height="wrap_content" android:text="@string/aluminum" android:layout_width="wrap_content"></CheckBox>
+                </TableRow>
+            </TableLayout>
+            <EditText android:layout_height="wrap_content" android:text="@string/blank" android:hint="@string/citysthint" android:id="@+id/etCityState" android:layout_width="fill_parent"></EditText>
+            <TableLayout android:layout_height="wrap_content" android:id="@+id/tlZipSearch" android:layout_width="fill_parent">
+                <TableRow android:layout_height="wrap_content" android:id="@+id/trZipSearch" android:layout_width="wrap_content">
+                    <EditText android:layout_height="wrap_content" android:text="@string/blank" android:layout_width="150dip" android:hint="@string/ziphint" android:id="@+id/etZipCode" android:numeric="integer"></EditText>
+                    <Button android:id="@+id/btSearch" android:layout_height="wrap_content" android:text="@string/search" android:layout_width="wrap_content"></Button>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

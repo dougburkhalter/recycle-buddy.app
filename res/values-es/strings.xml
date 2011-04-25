@@ -2,19 +2,19 @@
 <resources>
     <string name="hello">Hello World, search!</string>
     <string name="tipfiller">This is a green tip.</string>
-    <string name="app_name">Recycle Buddy</string>
+    <string name="app_name">Reciclaje de amigo</string>
     <string name="address_sample">Example Location\n118 College Drive\nHattiesburg, MS 39406\n601-555-5555\nhttp://example.org</string>
     <string name="blank"></string>
-    <string name="search">Search</string>
+    <string name="search">Buscar</string>
     <string name="searchinstructions">Please choose the item(s) you wish to recycle, and your zip code or city &amp; state.</string>
-    <string name="ziphint">Zip Code</string>
-    <string name="citysthint">City &amp; State</string>
-    <string name="cardboard">Cardboard</string>
-    <string name="plastic">Plastic</string>
-    <string name="glass">Glass</string>
-    <string name="aluminum">Aluminum</string>
-    <string name="paper">Paper</string>
-    <string name="anything">Anything</string>
+    <string name="ziphint">Código Postal</string>
+    <string name="citysthint">Ciudad y Estado</string>
+    <string name="cardboard">Cartón</string>
+    <string name="plastic">Plástico</string>
+    <string name="glass">Vidrio</string>
+    <string name="aluminum">Aluminio</string>
+    <string name="paper">Papel</string>
+    <string name="anything">Todo</string>
     <string-array name="materials">
         <item>Aluminum</item>
         <item>Glass</item>
@@ -23,6 +23,6 @@
         <item>Paper</item>
     </string-array>
     <color name="BuddyGreen">#ABC578</color>
-    <string name="add">Add</string>
-    <string name="greentip">Green Tip: </string>
+    <string name="add">Agregar</string>
+    <string name="greentip">Ecologico Consejo: </string>
 </resources>
