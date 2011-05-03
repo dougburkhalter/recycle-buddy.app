@@ -25,4 +25,5 @@
     <color name="BuddyGreen">#ABC578</color>
     <string name="add">Add</string>
     <string name="greentip">Green Tip: </string>
+    <string name="UseLoc">Use My Location</string>
 </resources>

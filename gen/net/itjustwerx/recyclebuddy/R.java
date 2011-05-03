@@ -20,35 +20,42 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
-        public static final int btSearch=0x7f070017;
-        public static final int cbAluminum=0x7f070012;
-        public static final int cbAny=0x7f07000b;
-        public static final int cbCardboard=0x7f07000c;
-        public static final int cbGlass=0x7f070011;
-        public static final int cbPaper=0x7f07000f;
-        public static final int cbPlastic=0x7f07000e;
-        public static final int etCityState=0x7f070013;
-        public static final int etZipCode=0x7f070016;
-        public static final int ivIcon=0x7f070004;
-        public static final int llAll=0x7f070000;
-        public static final int llMain=0x7f070007;
-        public static final int svMain=0x7f070006;
-        public static final int tableLayout1=0x7f070002;
-        public static final int tableRow1=0x7f070003;
-        public static final int tlCheckboxes=0x7f070009;
-        public static final int tlZipSearch=0x7f070014;
-        public static final int trCheck1=0x7f07000a;
-        public static final int trCheck2=0x7f07000d;
-        public static final int trCheck3=0x7f070010;
-        public static final int trZipSearch=0x7f070015;
-        public static final int tvAppName=0x7f070005;
-        public static final int tvSearchHelp=0x7f070008;
-        public static final int tvTips=0x7f070001;
+        public static final int add=0x7f080017;
+        public static final int btSearch=0x7f080012;
+        public static final int cbAluminum=0x7f080015;
+        public static final int cbAny=0x7f08000c;
+        public static final int cbCardboard=0x7f08000e;
+        public static final int cbGlass=0x7f08000f;
+        public static final int cbPaper=0x7f080014;
+        public static final int cbPlastic=0x7f08000d;
+        public static final int cbUseLoc=0x7f080011;
+        public static final int etCityState=0x7f080010;
+        public static final int etZipCode=0x7f080013;
+        public static final int item1=0x7f080018;
+        public static final int ivIcon=0x7f080003;
+        public static final int linearLayout1=0x7f080006;
+        public static final int llAll=0x7f080008;
+        public static final int menu_search=0x7f080016;
+        public static final int rlHeader=0x7f080000;
+        public static final int rlMain=0x7f08000b;
+        public static final int scrollView1=0x7f080005;
+        public static final int svMain=0x7f08000a;
+        public static final int tvAppName=0x7f080004;
+        public static final int tvResults=0x7f080007;
+        public static final int tvSearchHelp=0x7f080009;
+        public static final int tvTipHeader=0x7f080001;
+        public static final int tvTips=0x7f080002;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int results=0x7f030000;
+        public static final int search=0x7f030001;
+    }
+    public static final class menu {
+        public static final int main_menu=0x7f070000;
     }
     public static final class string {
+        public static final int UseLoc=0x7f040011;
+        public static final int add=0x7f04000f;
         public static final int address_sample=0x7f040003;
         public static final int aluminum=0x7f04000c;
         public static final int anything=0x7f04000e;
@@ -57,6 +64,7 @@ public final class R {
         public static final int cardboard=0x7f040009;
         public static final int citysthint=0x7f040008;
         public static final int glass=0x7f04000b;
+        public static final int greentip=0x7f040010;
         public static final int hello=0x7f040000;
         public static final int paper=0x7f04000d;
         public static final int plastic=0x7f04000a;

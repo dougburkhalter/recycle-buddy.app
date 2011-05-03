@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -12,15 +13,24 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.location.*;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
+import android.util.Log;
+import android.view.*;
 import android.view.View.*;
 import android.widget.*;
 
 
 
-public class search extends Activity {
+public class search extends Activity implements LocationListener {
+	
+	LocationManager locationManager;
+	Geocoder geocoder;
+	CheckBox cbUseLoc;
+	EditText etCityState;
+	EditText etZipCode;
+	String locCityState;
+	String locZipCode;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -40,21 +50,50 @@ public class search extends Activity {
 		final EditText etZipCode = (EditText) findViewById(R.id.etZipCode);
 		final TextView tvTips = (TextView) findViewById(R.id.tvTips);
 		final Button btSearch = (Button) findViewById(R.id.btSearch);
+		final CheckBox cbUseLoc = (CheckBox) findViewById(R.id.cbUseLoc);
+		
+		
+		locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+		geocoder = new Geocoder(this);
+		locCityState = locZipCode = "";
+		
+		//Initialize with the last known location
+		Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		if (lastLocation != null)
+			onLocationChanged(lastLocation);
 
 		OnClickListener oclOtherCheckBoxes = new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				cbAnything.setChecked(false);
+				if (cbPlastic.isChecked() & cbGlass.isChecked() & cbCardboard.isChecked() & cbPaper.isChecked() & cbAluminum.isChecked()) {
+					cbPlastic.setChecked(false);
+					cbGlass.setChecked(false);
+					cbCardboard.setChecked(false);
+					cbPaper.setChecked(false);
+					cbAluminum.setChecked(false);
+					cbAnything.setChecked(true);
+				} else if (!cbPlastic.isChecked() & !cbGlass.isChecked() & !cbCardboard.isChecked() & !cbPaper.isChecked() & !cbAluminum.isChecked()) {
+					cbAnything.setChecked(true);
+				}
 			}
 		};
 		cbAnything.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				cbPlastic.setChecked(false);
-				cbGlass.setChecked(false);
-				cbCardboard.setChecked(false);
-				cbPaper.setChecked(false);
-				cbAluminum.setChecked(false);
+				if (cbAnything.isChecked()) {
+					cbPlastic.setChecked(false);
+					cbGlass.setChecked(false);
+					cbCardboard.setChecked(false);
+					cbPaper.setChecked(false);
+					cbAluminum.setChecked(false);
+				} else {
+					cbPlastic.setChecked(true);
+					cbGlass.setChecked(true);
+					cbCardboard.setChecked(true);
+					cbPaper.setChecked(true);
+					cbAluminum.setChecked(true);
+				}
 			}
 		});
 		cbPlastic.setOnClickListener(oclOtherCheckBoxes);
@@ -62,6 +101,22 @@ public class search extends Activity {
 		cbCardboard.setOnClickListener(oclOtherCheckBoxes);
 		cbPaper.setOnClickListener(oclOtherCheckBoxes);
 		cbAluminum.setOnClickListener(oclOtherCheckBoxes);
+		cbUseLoc.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (cbUseLoc.isChecked()) {
+					etCityState.setEnabled(false);
+					etCityState.setText(locCityState);
+					etZipCode.setEnabled(false);
+					etZipCode.setText(locZipCode);
+				} else {
+					etCityState.setEnabled(true);
+					etCityState.setText("");
+					etZipCode.setEnabled(true);
+					etZipCode.setText("");
+				}
+			}
+		});
 
 		btSearch.setOnClickListener(new OnClickListener() {
 			@Override
@@ -71,7 +126,7 @@ public class search extends Activity {
 				getResults.putExtra("ZipCode", etZipCode.getText().toString());
 				String checkedBoxes = "";
 				if (cbAnything.isChecked()) {
-					checkedBoxes = "Plastic, Cardboard, Glass, Paper, Aluminum";
+					checkedBoxes = "Any";
 				} else {
 					if (cbPlastic.isChecked()) {
 						checkedBoxes += "Plastic";
@@ -138,5 +193,51 @@ public class search extends Activity {
                 }
             }
 		}*/
+	}
+
+	@Override
+	protected void onResume() {
+		super.onRestart();
+		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		locationManager.removeUpdates(this);
+	}
+	
+	// Called when location has changed
+	public void onLocationChanged(Location location) {
+		// Perform geocoding for this location
+		try {
+			List<Address> addresses = geocoder.getFromLocation(
+					location.getLatitude(), location.getLongitude(), 1);
+			for (Address address : addresses) {
+				locCityState = address.getLocality() + ", " + address.getAdminArea();
+				locZipCode = address.getPostalCode();
+			}
+		} catch (IOException e) {
+			Log.e("Search", "Couldn't get Geocoder data", e);
+		}
+	}
+
+	//Methods required for LocationListener
+	@Override
+	public void onProviderDisabled(String provider) {
+		// Nothing to do for this
+		cbUseLoc.setEnabled(false);
+		cbUseLoc.setChecked(false);
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// Nothing to do for this
+		cbUseLoc.setEnabled(true);
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// Nothing to do for this
 	}
 }

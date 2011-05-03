@@ -5,13 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,7 +37,7 @@ public class Results extends Activity {
 
 		//Initialize needed widgets
 		final TextView tvTips = (TextView) findViewById(R.id.tvTips);
-		final TextView tvSample = (TextView) findViewById(R.id.tvSample);
+		final TextView tvResults = (TextView) findViewById(R.id.tvResults);
 		
 		//Set tips text to random tip from site.
 		try {tvTips.setText( new BufferedReader(new InputStreamReader(new DefaultHttpClient().execute(new HttpGet(new URI("http://recyclebuddy.itjustwerx.net/gettip.php"))).getEntity().getContent())).readLine());} catch (IllegalStateException e1) {} catch (ClientProtocolException e) {} catch (IOException e) {} catch (URISyntaxException e) {}
@@ -46,13 +51,21 @@ public class Results extends Activity {
 		    CityState = extras.getString("CityState");
 		    ZipCode = extras.getString("ZipCode");
 		    Materials = extras.getString("Materials");
+		    	
 		    ProgressDialog searchDialog = ProgressDialog.show(Results.this, "", "Searching. Please wait...", true);
 		    //Retrieve results
 		    BufferedReader in = null;
 	        try {
 	            HttpClient client = new DefaultHttpClient();
 	            HttpPost request = new HttpPost();
-	            request.setURI(new URI("http://recyclebuddy.itjustwerx.net/gettip.php"));
+	            // Add your data
+	            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+	            nameValuePairs.add(new BasicNameValuePair("CityState", CityState));
+	            nameValuePairs.add(new BasicNameValuePair("ZipCode", ZipCode));
+	            nameValuePairs.add(new BasicNameValuePair("Materials", Materials));
+	            nameValuePairs.add(new BasicNameValuePair("App", "Android"));
+	            request.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	            request.setURI(new URI("http://recyclebuddy.itjustwerx.net/getlocations.php"));
 	            HttpResponse response = client.execute(request);
 	            in = new BufferedReader
 	            (new InputStreamReader(response.getEntity().getContent()));
@@ -64,7 +77,7 @@ public class Results extends Activity {
 	            }
 	            in.close();
 	            String page = sb.toString();
-	            tvSample.setText(page);
+	            tvResults.setText(page);
 	            } catch (IOException e) {
 					e.printStackTrace();
 				} catch (URISyntaxException e) {
@@ -80,11 +93,10 @@ public class Results extends Activity {
 	            }
 			}
 		    
-		    //Here's where we do the searching....
             searchDialog.dismiss();
-		} else {
+		} else { //No "Extras" passed, abort view with error.
 			new AlertDialog.Builder(this)
-				.setMessage("Nothing to search for!")
+				.setMessage("Nothing to search for!\nPlease run the program normally.")
 			       .setCancelable(false)
 			       .setPositiveButton("Sorry!", new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {
